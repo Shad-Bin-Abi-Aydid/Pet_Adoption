@@ -1,11 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pet Adoption</title>
-</head>
-<body>
-    
-</body>
+
+    <!-- connect daisyUI -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@4.12.23/dist/full.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Connect google font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .lato-font {
+        font-family: "Lato", serif;
+        font-weight: 800;
+        font-weight: 400;
+        font-style: normal;
+      }
+    </style>
+  </head>
+  <body class="w-11/12 mx-auto lato-font">
+    <header>
+      <nav class="flex sm:flex-row justify-between items-center my-5">
+        <h2 class="flex gap-1 text-xl font-bold">
+          <img src="./images/logo.webp" alt="" />Peddy
+        </h2>
+
+        <ul class="flex justify-between items-center gap-4 text-gray-500">
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Shop</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+
+        <img
+          class="w-8 border p-1 rounded-full"
+          src="https://img.icons8.com/?size=100&id=89592&format=png&color=000000"
+          alt=""
+        />
+      </nav>
+
+      <section class="banner">
+        <!-- All text section -->
+        <div class="text-center space-y-5 mt-10">
+          <h3 class="text-xl font-bold text-gray-500">
+            Bringing Families Together ❤️‍🔥
+          </h3>
+          <h1 class="text-6xl font-extrabold">
+            Your Path to Adoption <br />Starts Here
+          </h1>
+          <p class="text-[#131313]">
+            Adopting a pet gives an animal a loving home and a second chance at
+            life. It is a rewarding way to gain a <br />
+            loyal companion while making a positive difference.
+          </p>
+          <button class="btn text-xl bg-[#0E7A81] text-white">View More</button>
+        </div>
+
+        <!-- Image section -->
+        <div class="">
+          <img class="mx-auto items-center" src="./images/pet.webp" alt="" />
+        </div>
+      </section>
+    </header>
+
+    <main>
+      <!-- Text section -->
+      <div class="text-center space-y-5 my-10">
+        <h2>Adopt Your Best Friend</h2>
+        <p>
+          Bring home a loyal companion who will fill your life with
+          unconditional love and joy. Give a deserving pet a forever home today!
+        </p>
+      </div>
+    </main>
+
+    <footer></footer>
+  </body>
 </html>
