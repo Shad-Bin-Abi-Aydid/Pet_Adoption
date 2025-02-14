@@ -76,14 +76,30 @@
     <main>
       <!-- Text section -->
       <div class="text-center space-y-5 my-10">
-        <h2>Adopt Your Best Friend</h2>
-        <p>
+        <h2 class="text-3xl font-extrabold">Adopt Your Best Friend</h2>
+        <p class="text-gray-500">
           Bring home a loyal companion who will fill your life with
           unconditional love and joy. Give a deserving pet a forever home today!
         </p>
       </div>
+
+      <!-- API container -->
+      <div class="api-container">
+
+        <!-- Spinner Section -->
+        <div class="flex items-center justify-center">
+          <span id="spinner" class="loading loading-dots loading-lg"></span>
+        </div>
+
+        <!-- Category section -->
+       <div id="category-container" class="flex flex-wrap justify-around items-center gap-5 my-10">
+       </div>
+
+      </div>
+      
     </main>
 
     <footer></footer>
+    <script src="./adoption.js"></script>
   </body>
 </html>
