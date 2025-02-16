@@ -67,7 +67,7 @@
             life. It is a rewarding way to gain a <br />
             loyal companion while making a positive difference.
           </p>
-          <button class="btn text-xl bg-[#0E7A81] text-white">View More</button>
+          <button  class="btn text-xl bg-[#0E7A81] text-white" onclick="scrollToSection('mainId')">View More</button>
         </div>
 
         <!-- Image section -->
@@ -77,7 +77,7 @@
       </section>
     </header>
 
-    <main>
+    <main id="mainId">
       <!-- Text section -->
       <div class="text-center space-y-5 my-10">
         <h2 class="text-3xl font-extrabold">Adopt Your Best Friend</h2>
@@ -104,7 +104,11 @@
         <div id="pets-container" class="grid grid-cols-1 md:grid-cols-3 gap-3"></div>
 
         <!-- Display the liked pets -->
-         <div class="border border-gray-500 rounded-lg flex flex-col-2 flex-wrap"></div>
+         <div>
+          <div id="likedPets" class=" hidden border border-gray-500 rounded-lg gap-2 p-2">
+            <p id="ShowingInfo" class="text-xl font-bold text-gray-500 text-center">Your Liked Pets Showing Here</p>
+          </div>
+         </div>
        </div>
       </div>
 

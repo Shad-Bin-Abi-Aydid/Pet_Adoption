@@ -5,10 +5,16 @@ const loadSpinner = () => {
   setTimeout(function () {
     // Stop the spinner
     document.getElementById("spinner").style.display = "none";
+    document.getElementById("likedPets").classList.remove("hidden");
 
     loadAllCategory();
     loadAllPets();
   }, 1000);
+};
+
+// Scroll to the main section after clicking the view more button
+const scrollToSection = (sectionId) => {
+  document.getElementById(sectionId).scrollIntoView({ behavior: "smooth" });
 };
 
 // Load all category
@@ -94,7 +100,7 @@ const displayAllPets = (pets) => {
   }
 
   pets.forEach((pet) => {
-    console.log(pet);
+    console.log(pet.image);
     const card = document.createElement("div");
     card.classList = "card card-compact border border-gray-500 shadow-md rounded-lg";
 
@@ -114,7 +120,7 @@ const displayAllPets = (pets) => {
                 <p class="text-gray-500">Price: ${pet.price}</p>
                 <hr/>
                 <div class="card-actions grid grid-clos-2 md:grid-cols-3 justify-around items-center">
-                    <button class="btn px-5"><i class="fa-regular fa-thumbs-up"></i></button>
+                    <button onClick = "handleLike('${pet.image}')" class="btn px-5"><i class="fa-regular fa-thumbs-up"></i></button>
                     <button class="btn text-blue-600 font-bold p-4">Adopt</button>
                     <button onClick = "loadPetByIdName('${pet.petId}')" class="btn text-blue-600 font-bold">Details</button>
                 </div>
@@ -138,6 +144,23 @@ const modalDisplay = (pet) =>{
   `;
 
   document.getElementById("my_modal_1").showModal();
+}
+
+// Handle Like Button
+const handleLike = (image) =>{
+
+  console.log(image)
+  const likedPets = document.getElementById("likedPets");
+  const showInfo = document.getElementById("ShowingInfo");
+  showInfo.classList.add("hidden");
+  likedPets.classList.add("grid","grid-cols-2");
+  
+  const imageElement = document.createElement("img");
+  imageElement.classList = "w-full h-full object-cover rounded-lg"
+  imageElement.src = image;
+  
+  likedPets.appendChild(imageElement);
+
 }
 
 loadSpinner();
