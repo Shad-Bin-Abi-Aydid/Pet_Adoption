@@ -100,7 +100,6 @@ const displayAllPets = (pets) => {
   }
 
   pets.forEach((pet) => {
-    console.log(pet.image);
     const card = document.createElement("div");
     card.classList = "card card-compact border border-gray-500 shadow-md rounded-lg";
 
@@ -121,7 +120,7 @@ const displayAllPets = (pets) => {
                 <hr/>
                 <div class="card-actions grid grid-clos-2 md:grid-cols-3 justify-around items-center">
                     <button onClick = "handleLike('${pet.image}')" class="btn px-5"><i class="fa-regular fa-thumbs-up"></i></button>
-                    <button class="btn text-blue-600 font-bold p-4">Adopt</button>
+                    <button id="adoptBtn-${pet.petId}" onClick = "showCountdownModal(${pet.petId})" class=" btn text-blue-600 font-bold p-4">Adopt</button>
                     <button onClick = "loadPetByIdName('${pet.petId}')" class="btn text-blue-600 font-bold">Details</button>
                 </div>
             </div>
@@ -145,6 +144,33 @@ const modalDisplay = (pet) =>{
 
   document.getElementById("my_modal_1").showModal();
 }
+
+// Count down Modal
+const showCountdownModal = (id) => {
+  
+  const modal = document.getElementById("countdownModal");
+  const countdownText = document.getElementById("countdownText");
+  const adoptBtn = document.getElementById(`adoptBtn-${id}`);
+
+  modal.classList.remove("hidden"); 
+
+  let count = 3;
+  countdownText.innerText = count;
+
+  const countdown = setInterval(() => {
+    count--;
+    countdownText.innerText = count;
+
+    if (count === 0) {
+      clearInterval(countdown);
+      setTimeout(() => {
+        modal.classList.add("hidden");
+        adoptBtn.innerText = "Adopted"
+        adoptBtn.setAttribute("disabled", true);
+      }, 500); // Slight delay before hiding
+    }
+  }, 1000);
+};
 
 // Handle Like Button
 const handleLike = (image) =>{
