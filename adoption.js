@@ -1,4 +1,4 @@
-//
+// Spinner for All data
 const loadSpinner = () => {
   document.getElementById("spinner").style.display = "block";
 
@@ -9,8 +9,27 @@ const loadSpinner = () => {
 
     loadAllCategory();
     loadAllPets();
-  }, 1000);
+  }, 2000);
 };
+
+// Spinner for Category data
+const loadSpinnerForCategory = (data) => {
+  const spinnerCate = document.getElementById("spinner-2");
+  spinnerCate.style.display = "block";
+  spinnerCate.classList.remove("hidden")
+  document.getElementById("pets-container").classList.add("hidden");
+
+
+  setTimeout(function () {
+    // Stop the spinner
+    spinnerCate.style.display = "none";
+    document.getElementById("pets-container").classList.remove("hidden");
+    spinnerCate.classList.add("hidden");
+
+    displayAllPets(data);
+  }, 2000);
+};
+
 
 // Scroll to the main section after clicking the view more button
 const scrollToSection = (sectionId) => {
@@ -35,11 +54,25 @@ const loadAllPets = () => {
 };
 
 // Load pets by Category
-const loadAllByCategory= (id) => {
+const loadAllByCategory= (id, cId) => {
   
   fetch(`https://openapi.programming-hero.com/api/peddy/category/${id}`)
     .then((res) => res.json())
-    .then((data) => displayAllPets(data.data))
+    .then((data) => {
+
+      // remove the active button class if there have any
+      const activeBtnClass = document.getElementsByClassName("categoryBtn");
+      for (let actBtn of activeBtnClass) {
+        actBtn.classList.remove("bg-blue-500", "bg-opacity-50", "text-white");
+      }
+
+      // Select the button dynamically and add special style for active button.
+      const activeBtn = document.getElementById(`categoryBtn-${cId}`);
+      activeBtn.classList.add("bg-blue-500", "bg-opacity-50", "text-white");
+
+      loadSpinnerForCategory(data.data);
+
+    })
     .catch((error) => console.log(error));
 };
 
@@ -59,11 +92,12 @@ const displayCategory = (categories) => {
 
   // apply a foreach loop to create button for all categories
   categories.forEach((item) => {
+    console.log(item);
     
     // Create button
     const button = document.createElement("div");
     button.innerHTML = `
-        <button onClick = "loadAllByCategory('${item.category}')" class="flex justify-center items-center p-3 text-xl font-bold gap-5 btn"><img class="w-7" src="${item.category_icon}" /> ${item.category}</button>
+        <button id= "categoryBtn-${item.id}" onClick = "loadAllByCategory('${item.category}',${item.id})" class="flex justify-center items-center p-3 text-xl font-bold gap-5 btn categoryBtn"><img class="w-7" src="${item.category_icon}" /> ${item.category}</button>
     `
 
     // button.className =
@@ -113,9 +147,9 @@ const displayAllPets = (pets) => {
             </figure>
             <div class="space-y-2">
                 <h2 class="card-title">${pet.pet_name}</h2>
-                <p class="text-gray-500">Breed: ${pet.breed ? pet.breed : ""}</p>
-                <p class="text-gray-500">Birth: ${pet.date_of_birth ? pet.date_of_birth : ""}</p>
-                <p class="text-gray-500">Gender: ${pet.gender ? pet.gender : ""}</p>
+                <p class="text-gray-500">Breed: ${pet.breed ? pet.breed : "Not Available"}</p>
+                <p class="text-gray-500">Birth: ${pet.date_of_birth ? pet.date_of_birth : "Not Available"}</p>
+                <p class="text-gray-500">Gender: ${pet.gender ? pet.gender : "Not Available"}</p>
                 <p class="text-gray-500">Price: ${pet.price}</p>
                 <hr/>
                 <div class="card-actions grid grid-clos-2 md:grid-cols-3 justify-around items-center">
@@ -175,7 +209,6 @@ const showCountdownModal = (id) => {
 // Handle Like Button
 const handleLike = (image) =>{
 
-  console.log(image)
   const likedPets = document.getElementById("likedPets");
   const showInfo = document.getElementById("ShowingInfo");
   showInfo.classList.add("hidden");
