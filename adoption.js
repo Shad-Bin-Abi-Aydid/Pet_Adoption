@@ -18,12 +18,14 @@ const loadSpinnerForCategory = (data) => {
   spinnerCate.style.display = "block";
   spinnerCate.classList.remove("hidden")
   document.getElementById("pets-container").classList.add("hidden");
+  document.getElementById("likedPets").classList.add("hidden");
 
 
   setTimeout(function () {
     // Stop the spinner
     spinnerCate.style.display = "none";
     document.getElementById("pets-container").classList.remove("hidden");
+    document.getElementById("likedPets").classList.remove("hidden");
     spinnerCate.classList.add("hidden");
 
     displayAllPets(data);
@@ -50,6 +52,21 @@ const loadAllPets = () => {
   fetch("https://openapi.programming-hero.com/api/peddy/pets")
     .then((res) => res.json())
     .then((data) => displayAllPets(data.pets))
+    .catch((error) => console.log(error));
+};
+
+// load all pets using sort-by-price
+const loadAllPetsSoryByPrice = () => {
+  
+  fetch("https://openapi.programming-hero.com/api/peddy/pets")
+    .then((res) => res.json())
+    .then((data) => {
+
+      data.pets.sort((a, b) => b.price - a.price);
+      
+      displayAllPets(data.pets)
+
+    })
     .catch((error) => console.log(error));
 };
 
@@ -142,7 +159,7 @@ const displayAllPets = (pets) => {
             <figure class = "h-[200px]">
                 <img
                 src="${pet.image}"
-                class = "h-[200px] w-full object-cover rounded-lg mb-4"
+                class = "w-full h-48 md:h-[200]  object-cover rounded-lg mb-4"
                 alt="Pets" />
             </figure>
             <div class="space-y-2">
