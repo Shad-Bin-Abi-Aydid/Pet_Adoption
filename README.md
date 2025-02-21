@@ -20,10 +20,10 @@ A simple web application that allows users to browse and adopt pets. The app fet
 
 ## API Reference
 
-- **Categories Endpoint:** `https://openapi.programming-hero.com/api/peddy/categories`
-- **Pets Endpoint:** `https://openapi.programming-hero.com/api/peddy/pets`
-- **Category-specific Pets:** `https://openapi.programming-hero.com/api/peddy/category/{id}`
-- **Pet Details:** `https://openapi.programming-hero.com/api/peddy/pet/{petId}`
+- **Categories Endpoint:** https://openapi.programming-hero.com/api/peddy/categories
+- **Pets Endpoint:** https://openapi.programming-hero.com/api/peddy/pets
+- **Category-specific Pets:**  https://openapi.programming-hero.com/api/peddy/category/dog
+- **Pet Details:** https://openapi.programming-hero.com/api/peddy/pet/pet-id
 
 ## Live Link
-Live Link of the project: 
+Live Link of the project: https://shad-bin-abi-aydid.github.io/Pet_Adoption/
